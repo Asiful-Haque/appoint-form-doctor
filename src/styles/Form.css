@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #598882, #c29a50);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(59, 62, 63, 0.5); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+input[type="text"], input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+select {
+    height: 40px;
+    max-height: 520px; /* Adjust this value for your desired height */
+    overflow-y: auto; /* Add vertical scroll */
+    display: block; /* Ensures proper display */
+    width: 100%; /* Ensure it takes full width */
+    margin-top: 5px;
+    margin-bottom: 20px; /* Spacing above the dropdown */
+}
+
+
+
+
+
+
+
+.container h2 {
+    text-align: center;
+    color: #000000;
+    padding-bottom: 20px;
+}
+.appointment-block {
+    margin-bottom: 20px; /* Space between appointment blocks */
+  }
+  
+  .radio-item {
+    display: flex; /* Align label and input in a row */
+    align-items: center; /* Center align items vertically */
+    margin: 5px 0; /* Space between radio buttons */
+  }
+  
+  .radio-label {
+    margin-left: 8px; /* Space between radio button and label text */
+    cursor: pointer; /* Change cursor to pointer when hovering over label */
+    font-size: 16px; /* Font size for the label */
+    padding-top: 12px;
+  }
+  
+  /* Optional styles to enhance the appearance */
+  input[type="radio"] {
+    accent-color: #007bff; /* Change the radio button color */
+    cursor: pointer; /* Change cursor to pointer for radio buttons */
+  }
+  
+  /* For submit button styling */
+  input[type="submit"] {
+    margin-top: 20px; /* Space above the submit button */
+    padding: 10px 15px; /* Padding for the button */
+    background-color: #007bff; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s; /* Smooth background color transition */
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+  
+  .date-navigation {
+    display: flex;
+    justify-content: center;
+  }
+
+  .datebtn{
+    background-color:#27329d;
+    color: white;
+    padding: 10px;
+    box-shadow: none;
+    border: none;
+    margin: 5px;
+  }
