@@ -1,5 +1,5 @@
 export async function POST(request) {
-  const { firstname, lastname, address, disease, postSelector } = await request.json();
+  const { firstname, lastname, address, disease, selectedAppointment, postSelector } = await request.json();
   let tokenData = null;
 
   // First API call: Generate the token
@@ -48,8 +48,8 @@ export async function POST(request) {
           },
           body: JSON.stringify(
             postSelector === 1 
-              ? { address, disease } // If postSelector is 1, send only address and disease
-              : { firstname, lastname, address, disease } // If postSelector is 2, send all data
+              ? { postSelector, address, disease } // If postSelector is 1, send only address and disease
+              : { postSelector, address, disease, firstname, lastname, selectedAppointment } // If postSelector is 2, send all data
           ),
         }
       );

@@ -59,11 +59,14 @@ export default function Form() {
   const handleFinalSubmit = async (e) => {
     e.preventDefault();
 
+    console.log("Selected appointment:", selectedAppointment);
+
     const finalData = {
       ...formValues,
       selectedAppointment, // Include the selected appointment
       postSelector: 2, // Add postSelector with value 2 for the final submission
     };
+    console.log("Final form data:", finalData);
 
     try {
       const response = await fetch("/api/submitForm", {
@@ -93,13 +96,13 @@ export default function Form() {
   };
 
   // Function to generate available slots for a given time range
-  const generateSlots = (bookedSlots, selectedDate, currentHour,currentMinute, d, startHour = 9, endHour = 24, interval = 30) => {
-    console.log("Its ", selectedDate);
-    console.log("Its ", d);
-    console.log("current hour is ",currentHour);
-    console.log("current min is ",currentMinute);
+  const generateSlots = (bookedSlots, selectedDate, currentHour,currentMinute, d, startHour = 9, endHour = 17, interval = 30) => {
+    // console.log("Its ", selectedDate);
+    // console.log("Its ", d);
+    // console.log("current hour is ",currentHour);
+    // console.log("current min is ",currentMinute);
     if(selectedDate === d){
-      if(currentMinute > 30){
+      if(currentMinute >= 30){
         startHour = currentHour+1;
       }
       else{
@@ -109,16 +112,63 @@ export default function Form() {
     const slots = [];
     const bookedSet = new Set(bookedSlots);
 
+    /////////////////////////
+
+    // for(let hour = startHour; hour <= endHour; hour++) {
+    //   let minute = 0;
+    //   let slotTime = `${hour.toString().padStart(2, '0')}:${minute
+    //     .toString()
+    //     .padStart(2, '0')}`;
+    //     console.log(slotTime);
+
+    //     if (!bookedSet.has(slotTime)) {
+    //       slots.push(slotTime);
+    //     }
+
+    //   let flag;
+    //   if(hour != endHour) {
+    //     flag = 0;
+    //     minute = 30;
+    //     slotTime = `${hour.toString().padStart(2, '0')}:${minute
+    //       .toString()
+    //       .padStart(2, '0')}`;
+    //       console.log(slotTime);
+    //   }else{
+    //     flag = 1;
+    //   }
+      
+
+    //     if (flag == 0 && !bookedSet.has(slotTime)) {
+    //       slots.push(slotTime);
+    //     }
+    // }
+    // return slots;
+
     for (let hour = startHour; hour <= endHour; hour++) {
-      for (let minute = 0; minute < 60; minute += interval) {
-        const slotTime = `${hour.toString().padStart(2, '0')}:${minute
-          .toString()
-          .padStart(2, '0')}`;
-        // Add the slot if it’s not booked
-        if (!bookedSet.has(slotTime)) {
-          slots.push(slotTime);
+      if(hour === endHour) {
+        for (let minute = 0; minute < 30; minute += interval) {
+          const slotTime = `${hour.toString().padStart(2, '0')}:${minute
+            .toString()
+            .padStart(2, '0')}`;
+            // console.log(slotTime);
+          // Add the slot if it’s not booked
+          if (!bookedSet.has(slotTime)) {
+            slots.push(slotTime);
+          }
+        }
+      } else {
+        for (let minute = 0; minute < 60; minute += interval) {
+          const slotTime = `${hour.toString().padStart(2, '0')}:${minute
+            .toString()
+            .padStart(2, '0')}`;
+            // console.log(slotTime);
+          // Add the slot if it’s not booked
+          if (!bookedSet.has(slotTime)) {
+            slots.push(slotTime);
+          }
         }
       }
+      
     }
     return slots;
   };
@@ -206,7 +256,7 @@ export default function Form() {
                 ).filter(Boolean); // Remove null or undefined values
 
                 let d = new Date().toLocaleDateString()
-                console.log(d);
+                // console.log(d);
                 const currentHour = currentDate.getHours();
                 const currentMinute = currentDate.getMinutes();
 
